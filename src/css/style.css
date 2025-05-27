@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-font1: #fff;
+    --color-font2: #7C5EF1;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: var(--color-font2);
+    align-items: center;
+}
+
+.logo-site img {
+    width: 80px;
+    height: 80px;
+}
+
+header nav ul {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+
+.icone-header {
+    display: flex;
+    font-size: 0.8rem;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    line-height: 10px;
+    color: var(--color-font1);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.icone-header-img {
+    width: 30px;
+    height: 30px;
+}
