@@ -1,12 +1,19 @@
+
+
+:root {
+    --color-font1: #fff;
+    --color-font2: #7C5EF1;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    --color-font1: #fff;
-    --color-font2: #7C5EF1;
+body {
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -44,4 +51,91 @@ header nav ul {
 .icone-header-img {
     width: 30px;
     height: 30px;
+}
+
+.slide-show {
+    width: 100%;
+    height: 100vh;
+}
+
+.imagem {
+    width: 100%;
+    height: 100%;
+}
+
+.paragrafo {
+    color: var(--color-font1);
+    text-align: justify;
+    font-size: 2.7rem;
+}
+
+.texto-sobre {
+    background: var(--color-font2);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    gap: 30px;;
+    margin: 10px;
+}
+
+.cards-sobre {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 80px;
+    min-height: 100vh;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card {
+    width: 400px;
+    height: 600px;
+    background: var(--color-font2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.card .titulo {
+    display: block;
+    color: var(--color-font1);
+    z-index: 2;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.hidden-left {
+    opacity: 0;
+    transition: 0.5s all;
+    transform: translateX(-100%);
+}
+
+.active-left {
+    opacity: 1;
+    transition: 0.5s all;
+    transform: translateX(0);
+}
+
+.card-info {
+    display: none;
+}
+
+.card-info .paragrafo {
+    text-align: start;
+    margin-left: 50px;
+    font-size: 2.5rem;
 }
