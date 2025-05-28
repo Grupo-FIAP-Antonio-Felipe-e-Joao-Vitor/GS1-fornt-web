@@ -2,8 +2,9 @@
 
 :root {
     --color-font1: #fff;
-    --color-font2: #7C5EF1;
+    --color-font2: #7c5ef1;
     --bg-color: #EBE4E4;
+    --gradient: linear-gradient(to top, rgba(60, 20, 35, 0.6), rgba(60, 20, 35, 0.3));
 }
 
 * {
@@ -147,4 +148,37 @@ header nav ul {
 
 .show {
     display: block;
+}
+
+#pagina-quiz {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    min-height: 100vh;
+    background-image: var(--gradient), url(../assets/Background-quiz.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#pagina-quiz .titulo {
+    color: var(--color-font1);
+}
+
+.btn {
+    width: 400px;
+    height: 100px;
+    border-radius: 100px;
+    background: var(--color-font2);
+    color: var(--color-font1);
+    font-size: 2rem;
+    box-shadow: 0px 3px 0px 0px var(--color-font1);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--color-font1);
+    color: var(--color-font2);
+    box-shadow: 0px 3px 0px 0px var(--color-font2);
 }
