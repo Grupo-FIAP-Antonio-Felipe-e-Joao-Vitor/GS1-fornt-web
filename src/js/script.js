@@ -24,53 +24,23 @@ const card3 = document.getElementById("card3")
 card1.addEventListener("click", () => {
     const card1Titulo = document.getElementById('card1Titulo')
     const card1Info = document.getElementById('card1Info')
-    let clicado = false
-
-    if (clicado == false) {
-        clicado = true
-        card1Titulo.style.display = "none"
-        card1Info.style.display = "block"
-    }
-
-    else {
-        card1Titulo.style.display = "block"
-        card1Info.style.display = "none"
-        clicado = false
-    }
+    card1Titulo.classList.toggle("hidden")
+    card1Info.classList.toggle("show")
 })
 
 card2.addEventListener("click", () => {
     const card2Titulo = document.getElementById('card2Titulo')
     const card2Info = document.getElementById('card2Info')
-    let clicado = false
+    card2Titulo.classList.toggle("hidden")
+    card2Info.classList.toggle("show")
+    
 
-    if (clicado == false) {
-        clicado = true
-        card2Titulo.style.display = "none"
-        card2Info.style.display = "block"
-    }
-
-    else {
-        card2Titulo.style.display = "block"
-        card2Info.style.display = "none"
-        clicado = false
-    }
 })
 
 card3.addEventListener("click", () => {
     const card3Titulo = document.getElementById('card3Titulo')
     const card3Info = document.getElementById('card3Info')
-    let clicado = false
 
-    if (clicado == false) {
-        clicado = true
-        card3Titulo.style.display = "none"
-        card3Info.style.display = "block"
-    }
-
-    else {
-        card3Titulo.style.display = "block"
-        card3Info.style.display = "none"
-        clicado = false
-    }
+    card3Titulo.classList.toggle("hidden")
+    card3Info.classList.toggle("show")
 })

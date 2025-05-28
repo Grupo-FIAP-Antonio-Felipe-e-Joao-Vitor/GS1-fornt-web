@@ -51,8 +51,8 @@ header nav ul {
 }
 
 .icone-header-img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 }
 
 .slide-show {
@@ -111,7 +111,6 @@ header nav ul {
 }
 
 .card .titulo {
-    display: block;
     color: var(--color-font1);
     z-index: 2;
 }
@@ -122,22 +121,27 @@ header nav ul {
 
 .hidden-left {
     opacity: 0;
-    transition: 0.5s all;
+    transition: 1s all;
     transform: translateX(-100%);
 }
 
 .active-left {
     opacity: 1;
-    transition: 0.5s all;
+    transition: 1s all;
     transform: translateX(0);
 }
 
-.card-info {
-    display: none;
-}
 
 .card-info .paragrafo {
     text-align: start;
     margin-left: 50px;
     font-size: 2.5rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
 }
