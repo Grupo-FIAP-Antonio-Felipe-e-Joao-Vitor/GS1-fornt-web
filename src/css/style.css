@@ -3,6 +3,7 @@
 :root {
     --color-font1: #fff;
     --color-font2: #7c5ef1;
+    --color-font3: #717171;
     --bg-color: #EBE4E4;
     --gradient: linear-gradient(to top, rgba(60, 20, 35, 0.6), rgba(60, 20, 35, 0.3));
 }
@@ -181,4 +182,63 @@ header nav ul {
     background: var(--color-font1);
     color: var(--color-font2);
     box-shadow: 0px 3px 0px 0px var(--color-font2);
+}
+
+#pagina-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    padding: 10px;
+}
+
+.secao-mapa {
+    display: flex;
+    gap: 20px;
+}
+
+.mapa-container {
+    width: 70%;
+    height: 600px;
+}
+
+#mapa {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+#informacoes {
+    background: var(--color-font3);
+    border-radius: 20px;
+    width: 30%;
+    height: 600px;
+    color: var(--color-font1);
+}
+
+#pesquisa-CEP {
+    border: none;
+    background: var(--color-font1);
+    color: #000;
+    box-shadow: 0px 3px 0px 0px var(--color-font2);
+    padding: 5px 10px;
+    width: 70%;
+    height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+#campo-pesquisa-CEP {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#campo-pesquisa-CEP .btn {
+    width: 30%;
+    height: 50px;
+    border-radius: 5px;
 }

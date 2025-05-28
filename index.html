@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"crossorigin=""/>
+    <script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"crossorigin=""></script>
+    <script defer src="./src/js/mapa.js"></script>
+    
     <link rel="stylesheet" href="./src/css/style.css">
+
+
     <title>GS - Home</title>
 </head>
 <body>
@@ -19,6 +25,21 @@
         </nav>
         <a href="./src/pages/contato.html" class="icone-header"><img class="icone-header-img" src="./src/assets/Icone-ajuda.png" alt="Icone Ajuda">Ajuda</a>
     </header>
+
+    <main id="pagina-home">
+        <section class="secao-mapa">
+            <section class="mapa-container">
+                <div id="mapa"></div>
+            </section>
+            <aside id="informacoes">
+                <h2 class="titulo">Aguardando CEP...</h2>
+            </aside>
+        </section>
+        <form id="campo-pesquisa-CEP">
+            <input type="text" id="pesquisa-CEP" placeholder="Digite o CEP" required>
+            <button class="btn">Procurar</button>
+        </form>
+    </main>
 
 </body>
 </html>
