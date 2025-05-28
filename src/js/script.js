@@ -44,3 +44,29 @@ card3.addEventListener("click", () => {
     card3Titulo.classList.toggle("hidden")
     card3Info.classList.toggle("show")
 })
+
+const imagens = [
+    "../assets/Imagem1-sobre.png",
+    "../assets/Imagem2-sobre.png",
+    "../assets/Imagem3-sobre.png",
+]
+
+let count = 0
+
+
+function slideShow () {
+    
+    const campoBanner = document.querySelector(".imagem")
+    
+
+    campoBanner.src = imagens[count]
+    count += 1
+    if (count == imagens.length) {
+        count = 0
+    }
+
+    campoBanner.classList.toggle("active-right")
+    setTimeout(slideShow, 2000);
+}
+
+slideShow()
