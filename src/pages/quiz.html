@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
+    <script defer src="../js/quiz.js"></script>
     <title>GS - Quiz</title>
 </head>
 <body>
@@ -20,8 +21,34 @@
     </header>
 
     <main id="pagina-quiz">
-        <h2 class="titulo">Bem Vindo ao Quiz</h2>
-        <button class="btn" id="inicio-quiz">INICIAR QUIZ</button>
+        <section id="secao-inicial" class="show-flex">
+            <h2 class="titulo">Bem Vindo ao Quiz</h2>
+            <button class="btn" id="inicio-quiz" onclick="mostrarQuiz()">INICIAR QUIZ</button>
+        </section>
+        <section id="secao-quiz" class="hidden">
+            <form id="form-quiz">
+                <h2 class="titulo"><label for="alternativa" id="campo-pergunta">O que caracteriza uma enchente?</label></h2>
+                <div id="campo-alternativas">
+                    <div id="alternativa-1">
+                        <input type="radio" onclick="verificaResposta()" id="alternativa-A" name="alternativa" class="alternativas"><p class="paragrafo" id="texto-alternativa-A">A elevação do nível do lençol freático acima do solo</p>
+                    </div>
+                    <div id="alternativa-2">
+                        <input type="radio" onclick="verificaResposta()" id="alternativa-B" name="alternativa" class="alternativas"><p class="paragrafo" id="texto-alternativa-B">O transbordamento de cursos d’água que atinge áreas normalmente secas</p>
+                    </div>
+                </div>
+                <p class="paragrafo" id="count-pergunta"></p>
+                <p class="paragrafo hidden" id="mensagem-erro">Por favor, responda antes de ir para a próxima pergunta.</p>
+            </form>
+            <section class="hidden" id="secao-resultado">
+                <h2 class="titulo">Você terminou o quiz!</h2>
+                <p class="paragrafo" id="acertos"></p>
+                <button class="btn" id="reiniciar-btn" onclick="reiniciar()">Reiniciar</button>
+            </section>
+            
+        </section>
+        <section id="campo-proximo" class="hidden">
+            <button class="btn" onclick="proximaPergunta()">Próxima</button>
+        </section>
     </main>
 
 </body>

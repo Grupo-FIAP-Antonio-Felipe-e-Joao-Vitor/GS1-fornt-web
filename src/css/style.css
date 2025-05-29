@@ -4,6 +4,7 @@
     --color-font1: #fff;
     --color-font2: #7c5ef1;
     --color-font3: #717171;
+    --color-font4: rgba(124, 94, 241, 0.6);
     --bg-color: #EBE4E4;
     --gradient: linear-gradient(to top, rgba(60, 20, 35, 0.6), rgba(60, 20, 35, 0.3));
 }
@@ -151,12 +152,15 @@ header nav ul {
     display: block;
 }
 
+.show-flex {
+    display: flex;
+}
+
 #pagina-quiz {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
     min-height: 100vh;
     background-image: var(--gradient), url(../assets/Background-quiz.png);
     background-size: cover;
@@ -165,6 +169,120 @@ header nav ul {
 
 #pagina-quiz .titulo {
     color: var(--color-font1);
+}
+
+
+#secao-inicial {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#secao-inicial.hidden {
+    display: none;
+}
+
+#secao-quiz {
+    flex-direction: column;
+    width: 800px;
+    height: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    background: var(--color-font4);
+    position: relative;
+}
+
+#secao-quiz.hidden {
+    display: none;
+}
+
+#secao-quiz .titulo, #secao-quiz .paragrafo {
+    font-size: 2rem;
+}
+
+#form-quiz {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    gap: 50px;
+}
+
+#form-quiz.hidden {
+    display: none;
+}
+
+#form-quiz .titulo {
+    width: 80%;
+}
+
+#campo-alternativas {
+    display: flex;
+    gap: 30px;
+}
+
+#alternativa-1, #alternativa-2 {
+    display: flex;
+    gap: 10px;
+    width: 50%;
+    align-items: flex-start;
+}
+
+#alternativa-1 .paragrafo, #alternativa-2 .paragrafo {
+    font-size: 2rem;
+    text-align: start;
+}
+
+.alternativas {
+    appearance: none;
+    padding: 10px;
+    border: 2px solid var(--color-font3);
+    background: #ccc;
+    cursor: pointer;
+    height: 10px;
+    margin-top: 5px;
+}
+
+.alternativas:checked {
+    background: blue;
+}
+
+#count-pergunta {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+}
+
+#campo-proximo {
+    display: flex;
+    justify-content: flex-end;
+    background: transparent;
+    margin-top: 20px;
+}
+
+#campo-proximo.hidden {
+    display: none;
+
+}
+
+#secao-resultado {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    height: 500px;
+}
+
+#secao-resultado.hidden {
+    display: none;
+}
+
+#secao-resultado .paragrafo {
+    width: 100%;
+    text-align: center;
 }
 
 .btn {
