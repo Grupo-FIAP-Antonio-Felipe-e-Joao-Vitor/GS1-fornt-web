@@ -306,8 +306,9 @@ header nav ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     padding: 10px;
+    margin-top: 20px;
 }
 
 .secao-mapa {
@@ -317,7 +318,7 @@ header nav ul {
 
 .mapa-container {
     width: 70%;
-    height: 600px;
+    height: 500px;
 }
 
 #mapa {
@@ -330,8 +331,11 @@ header nav ul {
     background: var(--color-font3);
     border-radius: 20px;
     width: 30%;
-    height: 600px;
+    height: 500px;
     color: var(--color-font1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #pesquisa-CEP {
