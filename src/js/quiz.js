@@ -32,7 +32,8 @@ const perguntas = [
         pergunta: "O que caracteriza uma enchente?",
         A: "A elevação do nível do lençol freático acima do solo",
         B: "O transbordamento de cursos d’água que atinge áreas normalmente secas",
-        resposta: "b"
+        resposta: "b",
+        explicacao: ""  
     },
     {
         pergunta: "Qual fator urbano contribui diretamente para o aumento da frequência de enchentes?",
@@ -79,6 +80,8 @@ function verificaResposta () {
 
 let acertos = 0
 
+
+
 function proximaPergunta () {
     let respostaUsuario = verificaResposta();
     
@@ -94,6 +97,7 @@ function proximaPergunta () {
 
     // Verifica se é a última pergunta
     if (perguntaAtual < perguntas.length - 1) {
+        mostrarCard(perguntaAtual)
         perguntaAtual += 1;
         mostraPerguntas(perguntaAtual);
         campoPerguntaAtual.textContent = `${perguntaAtual + 1}/${perguntas.length}`;

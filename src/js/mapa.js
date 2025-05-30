@@ -6,6 +6,36 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 function pegarCEP () {
-    campoCEP = document.getElementById("pesquisa-CEP")
-    campoCEP.mask("00000-000")
+   campoCEP = document.getElementById("pesquisa-CEP")
+   return campoCEP.value
+}
+
+function procurarCEP () {
+    CEP = pegarCEP()
+    cord = converterCEP(CEP)
+    lat = cord[0]
+    lon = cord[1]
+    alert(`lat: ${lat} lon: ${lon}`)
+}
+
+async function converterCEP(CEP) {
+    url = "https://nominatim.openstreetmap.org/search"
+    params = {
+        "q": `${CEP}, Brazil`,
+        "format": "json",
+        "limit": 1
+    }
+    headers = {
+        "User-Agent": "MeuAppExemplo/1.0 (meuemail@exemplo.com)"
+    }
+
+    resposta = await fetch(url, params=params, headers=header)
+    dados = await resposta.json()
+    if (dados) {
+        lat = dados[0]['lat']
+        lon = dados[0]['lon']
+        return lat, lon
+    } else {
+        return
+    }
 }
