@@ -59,6 +59,7 @@ async function procurarCEP() {
             currentMarker = L.marker([lat, lon]).addTo(map)
                 .bindPopup(`<b>${cep}</b><br>${displayName}`)
             currentArea = L.circle([lat, lon], {radius: 200}).addTo(map)
+            map.panTo([lat, lon]).zoomIn(10)
 
             // Centralize o mapa no novo marcador
             map.setView([lat, lon], 15); // ajusta o zoom

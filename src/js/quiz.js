@@ -33,31 +33,36 @@ const perguntas = [
         A: "A elevação do nível do lençol freático acima do solo",
         B: "O transbordamento de cursos d’água que atinge áreas normalmente secas",
         resposta: "b",
-        explicacao: ""  
+        explicacao: "Enchentes são caracterizadas pelo transbordamento de rios, córregos e canais, que acabam invadindo áreas que normalmente ficam secas."  
     },
     {
         pergunta: "Qual fator urbano contribui diretamente para o aumento da frequência de enchentes?",
         A: "Redução da área permeável devido à urbanização intensa",
         B: "Construção de ciclovias em áreas planas",
-        resposta: "a"
+        resposta: "a",
+        explicacao: "A urbanização reduz a infiltração da água no solo, o que aumenta o volume de água escoando superficialmente e pode causar alagamentos e enchentes."
+
     },
     {
         pergunta: "Qual a principal função da Defesa Civil em situações de enchente?",
         A: "Executar obras de contenção permanente",
         B: "Coordenar ações de prevenção, alerta e resposta emergencial",
-        resposta: "b"
+        resposta: "b",
+        explicacao: "A Defesa Civil atua na coordenação de medidas preventivas e emergenciais, como alertas e resgates, durante desastres como enchentes."
     },
     {
         pergunta: "Por que atravessar uma via alagada é perigoso, mesmo com pouca água?",
         A: "A profundidade pode estar disfarçada e esconder riscos como buracos ou correnteza",
         B: "A água geralmente contém cloro e pode manchar a lataria do veículo",
-        resposta: "a"
+        resposta: "a",
+        explicacao: "Mesmo uma lâmina fina de água pode esconder buracos profundos, correntezas ou causar a perda de controle do veículo, oferecendo alto risco."
     },
     {
         pergunta: "O descarte de lixo nas ruas pode causar enchentes porque:",
         A: "Obstrui os sistemas de drenagem pluvial, impedindo o escoamento da água",
         B: "Aumenta o nível de poluição atmosférica",
-        resposta: "a"
+        resposta: "a",
+        explicacao: "O lixo descartado nas ruas pode entupir bueiros e galerias de água pluvial, impedindo o escoamento da água da chuva e causando enchentes."
     },
     
 ]
@@ -79,34 +84,71 @@ function verificaResposta () {
 }
 
 let acertos = 0
+let errou = null
+
+function mostarExplicacao(perguntaAtual, errou) {
+    const campoFeedback = document.getElementById("feedback")
+    const textoFeedback = document.getElementById("feedback-acerto")
+    const curiosidade = document.getElementById("curiosidade")
+    campoFeedback.classList.toggle("hidden")
+    formQUiz.classList.toggle("hidden")
+    
+    if (errou == true) {
+        textoFeedback.textContent = "Quase lá!"
+    } else {
+        textoFeedback.textContent = "Muito Bem!"
+    }
+
+    curiosidade.textContent = perguntas[perguntaAtual].explicacao
+}
 
 
+
+let exibiuFeedback = false; // Variável de controle
 
 function proximaPergunta () {
-    let respostaUsuario = verificaResposta();
-    
-    if (!respostaUsuario) {
-        msgErro.classList.remove("hidden");
-        return;
+    // Se ainda não exibiu o feedback, mostra e bloqueia avanço
+    if (!exibiuFeedback) {
+        let respostaUsuario = verificaResposta();
+
+        if (!respostaUsuario) {
+            msgErro.classList.remove("hidden");
+            return;
+        }
+
+        // Verifica e soma acerto antes de avançar
+        if (respostaUsuario === perguntas[perguntaAtual].resposta) {
+            acertos += 1;
+            errou = false;
+        } else {
+            errou = true;
+        }
+
+        mostarExplicacao(perguntaAtual, errou);
+        exibiuFeedback = true; // Marca que já exibiu
+        return; // Impede de avançar ainda
     }
 
-    // Verifica e soma acerto antes de avançar
-    if (respostaUsuario === perguntas[perguntaAtual].resposta) {
-        acertos += 1;
-    }
+    // Se já exibiu o feedback, então avança para próxima pergunta
+    exibiuFeedback = false; // Reseta para a próxima pergunta
 
-    // Verifica se é a última pergunta
-    if (perguntaAtual < perguntas.length - 1) {
-        perguntaAtual += 1;
+    const campoFeedback = document.getElementById("feedback");
+    campoFeedback.classList.add("hidden");
+    formQUiz.classList.remove("hidden");
+
+    perguntaAtual++;
+
+    if (perguntaAtual < perguntas.length) {
         mostraPerguntas(perguntaAtual);
         campoPerguntaAtual.textContent = `${perguntaAtual + 1}/${perguntas.length}`;
     } else {
-        formQUiz.classList.toggle("hidden");
+        formQUiz.classList.add("hidden");
         botaoProximo.classList.add("hidden");
-        secaoResultado.classList.remove("hidden")
-        campoAcertos.textContent = `Você acertou ${acertos} perguntas!`
+        secaoResultado.classList.remove("hidden");
+        campoAcertos.textContent = `Você acertou ${acertos} perguntas!`;
     }
 }
+
 
 
 function mostraPerguntas (perguntaAtual) {

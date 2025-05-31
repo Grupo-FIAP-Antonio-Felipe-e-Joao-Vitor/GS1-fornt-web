@@ -2,10 +2,10 @@
 
 :root {
     --color-font1: #fff;
-    --color-font2: #7c5ef1;
-    --color-font3: #717171;
-    --color-font4: rgba(124, 94, 241, 0.6);
-    --bg-color: #EBE4E4;
+    --color-font2: #2f80ed;
+    --color-font3: #333333;
+    --color-font4: rgba(47, 128, 237, 0.6);
+    --bg-color: #ECF4FA;
     --gradient: linear-gradient(to top, rgba(60, 20, 35, 0.6), rgba(60, 20, 35, 0.3));
 }
 
@@ -105,6 +105,8 @@ header nav ul {
     flex-wrap: wrap;
 }
 
+
+
 .card {
     width: 450px;
     height: 600px;
@@ -187,6 +189,7 @@ header nav ul {
 #secao-quiz {
     flex-direction: column;
     width: 800px;
+    min-height: 300px;
     height: 100%;
     padding: 20px;
     border-radius: 20px;
@@ -218,6 +221,7 @@ header nav ul {
     width: 80%;
 }
 
+
 #campo-alternativas {
     display: flex;
     gap: 30px;
@@ -246,7 +250,7 @@ header nav ul {
 }
 
 .alternativas:checked {
-    background: blue;
+    background: #27AE60;
 }
 
 #count-pergunta {
@@ -265,6 +269,10 @@ header nav ul {
 #campo-proximo.hidden {
     display: none;
 
+}
+
+#feedback .titulo {
+    margin-bottom: 20px;
 }
 
 #secao-resultado {
