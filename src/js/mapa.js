@@ -7,6 +7,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // declaração de variavel vazia
 let currentMarker = null;
+let currentArea = null;
 
 // declaração com chamando os elmentos do DOM
 const searchInput = document.getElementById("pesquisa-CEP");
@@ -51,12 +52,13 @@ async function procurarCEP() {
             // remove o marcador anterior caso exista
             if (currentMarker) {
                 map.removeLayer(currentMarker);
+                map.removeLayer(currentArea)
             }
 
             // adiciona o marcador
             currentMarker = L.marker([lat, lon]).addTo(map)
                 .bindPopup(`<b>${cep}</b><br>${displayName}`)
-                .openPopup();
+            currentArea = L.circle([lat, lon], {radius: 200}).addTo(map)
 
             // Centralize o mapa no novo marcador
             map.setView([lat, lon], 15); // ajusta o zoom

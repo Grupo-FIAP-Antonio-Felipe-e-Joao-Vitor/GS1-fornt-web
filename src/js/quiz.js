@@ -97,7 +97,6 @@ function proximaPergunta () {
 
     // Verifica se é a última pergunta
     if (perguntaAtual < perguntas.length - 1) {
-        mostrarCard(perguntaAtual)
         perguntaAtual += 1;
         mostraPerguntas(perguntaAtual);
         campoPerguntaAtual.textContent = `${perguntaAtual + 1}/${perguntas.length}`;
