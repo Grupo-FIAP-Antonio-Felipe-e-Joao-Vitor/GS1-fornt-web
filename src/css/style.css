@@ -7,6 +7,7 @@
     --color-font4: rgba(47, 128, 237, 0.6);
     --bg-color: #ECF4FA;
     --gradient: linear-gradient(to top, rgba(60, 20, 35, 0.6), rgba(60, 20, 35, 0.3));
+    --texto-font: Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -17,7 +18,7 @@
 
 body {
     overflow-x: hidden;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--text-font);
     background: var(--bg-color);
 }
 
@@ -371,4 +372,48 @@ header nav ul {
     width: 30%;
     height: 50px;
     border-radius: 5px;
+}
+
+#secao-ajuda {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#form-ajuda {
+    width: 500px;
+    height: 100%;
+    background: var(--color-font2);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+#form-ajuda label {
+    color: var(--color-font1);
+}
+
+#form-ajuda input, textarea {
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    padding: 5px 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    font-family: var(--texto-font);
+}
+
+#form-ajuda textarea {
+    height: 300px;
+}
+
+#btn-enviar {
+    border-radius: 5px;
+    text-transform: uppercase;
+    height: 75px;
 }
