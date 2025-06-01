@@ -18,7 +18,7 @@
 
 body {
     overflow-x: hidden;
-    font-family: var(--text-font);
+    font-family: var(--texto-font);
     background: var(--bg-color);
 }
 
@@ -91,6 +91,7 @@ header nav ul {
     gap: 30px;
     margin-top: 80px;
     min-height: 100vh;
+    margin-bottom: 20px;
 }
 
 .titulo {
@@ -318,6 +319,7 @@ header nav ul {
     height: 100%;
     padding: 10px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .secao-mapa {
@@ -416,4 +418,46 @@ header nav ul {
     border-radius: 5px;
     text-transform: uppercase;
     height: 75px;
+}
+
+footer {
+    background: var(--color-font2);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+}
+
+footer #rodape {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+footer #rodape .icone {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+footer #rodape #icones-contato, #icones-redes {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+footer #rodape #rodape-contato, #rodape-redes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer #rodape #rodape-contato .paragrafo, #rodape-redes .paragrafo{
+    font-size: 1.7rem;
+}
+
+footer #direitos .paragrafo {
+    font-size: 1.7rem;
 }
