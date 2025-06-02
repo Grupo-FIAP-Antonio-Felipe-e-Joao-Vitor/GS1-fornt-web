@@ -14,42 +14,18 @@ elements.forEach((element) => {
     myObserver.observe(element)
 })
 
+const cards = document.querySelectorAll(".card")
 
 
-const card1 = document.getElementById("card1")
-const card2 = document.getElementById("card2")
-const card3 = document.getElementById("card3")
+cards.forEach((card) => {
+    card.addEventListener("click", () => {
+        const secaoCard = card.closest(".secao-card")
+        const texto = secaoCard.querySelector(".card-container .card-info")
 
-
-card1.addEventListener("click", () => {
-    const card1Titulo = document.getElementById('card1Titulo')
-    const card1Info = document.getElementById('card1Info')
-    card1Titulo.classList.toggle("hidden")
-    card1Info.classList.toggle("show")
+        texto.classList.toggle("hidden")
+        console.log(texto)
+    })
 })
-
-card2.addEventListener("click", () => {
-    const card2Titulo = document.getElementById('card2Titulo')
-    const card2Info = document.getElementById('card2Info')
-    card2Titulo.classList.toggle("hidden")
-    card2Info.classList.toggle("show")
-    
-
-})
-
-card3.addEventListener("click", () => {
-    const card3Titulo = document.getElementById('card3Titulo')
-    const card3Info = document.getElementById('card3Info')
-
-    card3Titulo.classList.toggle("hidden")
-    card3Info.classList.toggle("show")
-})
-
-const imagens = [
-    "../assets/Imagem1-sobre.png",
-    "../assets/Imagem2-sobre.png",
-    "../assets/Imagem3-sobre.png",
-]
 
 let count = 0
 
