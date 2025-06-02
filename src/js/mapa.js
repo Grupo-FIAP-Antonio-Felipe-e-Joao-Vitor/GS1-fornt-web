@@ -36,6 +36,14 @@ async function procurarCEP() {
         return;
     }
 
+    if(searchInput.value == "05615040"){
+        nivelAgua = "Acima do limite"
+    }else if(searchInput.value == "02451000"){
+        nivelAgua = "Muito acima do limite"
+    }else{
+        nivelAgua = "Dentro do limite"
+    }
+
     infoAside.innerHTML = '<h2 class="titulo">Buscando informações...</h2>';
 
     try {
@@ -101,6 +109,7 @@ async function procurarCEP() {
                 <p><strong>Estado:</strong> ${state}</p>
                 <p><strong>Latitude:</strong> ${lat}</p>
                 <p><strong>Longitude:</strong> ${lon}</p>
+                <p><strong>Nível da água:</strong> ${nivelAgua}</p>
                 ${precipitationInfo}
             `;
         } else {
