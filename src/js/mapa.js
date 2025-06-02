@@ -7,7 +7,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // declaração de variavel vazia
 let currentMarker = null;
-let currentArea = null;
+let currentArea = null; // Mantém a referência para o círculo
 
 // declaração com chamando os elmentos do DOM
 const searchInput = document.getElementById("pesquisa-CEP");
@@ -15,7 +15,7 @@ const infoAside = document.getElementById("informacoes");
 const searchForm = document.getElementById("campo-pesquisa-CEP");
 
 //Evento de enviar os dados
-searchForm.addEventListener('submit', (e)=> {
+searchForm.addEventListener('submit', (e) => {
     e.preventDefault(); // previne qualquer alteração antes do evento
     procurarCEP();
 });
@@ -28,6 +28,10 @@ async function procurarCEP() {
             map.removeLayer(currentMarker);
             currentMarker = null;
         }
+        if (currentArea) { // Remove o círculo também
+            map.removeLayer(currentArea);
+            currentArea = null;
+        }
         map.setView([-23.5505, -46.6333], 10); //limpa o mapa
         return;
     }
@@ -35,34 +39,58 @@ async function procurarCEP() {
     infoAside.innerHTML = '<h2 class="titulo">Buscando informações...</h2>';
 
     try {
-        const data = await converterCEP(cep);
+        const dataCEp = await converterCEP(cep);
 
         // Verifica se os dados foram retornados e se possuem as coordenadas
-        if (data && data.location && data.location.coordinates) {
-            const lat = parseFloat(data.location.coordinates.latitude);
-            const lon = parseFloat(data.location.coordinates.longitude);
+        if (dataCEp && dataCEp.location && dataCEp.location.coordinates) {
+            const lat = parseFloat(dataCEp.location.coordinates.latitude);
+            const lon = parseFloat(dataCEp.location.coordinates.longitude);
 
-            // Constrói a string de exibição para o popup
-            const street = data.street || '';
-            const neighborhood = data.neighborhood || '';
-            const city = data.city || '';
-            const state = data.state || '';
-            const displayName = `${street}, ${neighborhood}, ${city}/${state}`;
+            // Extrai as informações do CEP
+            const street = dataCEp.street || 'Não informado';
+            const neighborhood = dataCEp.neighborhood || 'Não informado';
+            const city = dataCEp.city || 'Não informado';
+            const state = dataCEp.state || 'Não informado';
+            const displayName = `${street}, ${neighborhood}, ${city}, ${state}`; // Para o popup
 
-            // remove o marcador anterior caso exista
+            // Remove o marcador e o círculo anteriores caso existam
             if (currentMarker) {
                 map.removeLayer(currentMarker);
-                map.removeLayer(currentArea)
+                currentMarker = null;
+            }
+            if (currentArea) {
+                map.removeLayer(currentArea);
+                currentArea = null;
             }
 
-            // adiciona o marcador
+            // Adiciona o marcador e o círculo
             currentMarker = L.marker([lat, lon]).addTo(map)
-                .bindPopup(`<b>${cep}</b><br>${displayName}`)
-            currentArea = L.circle([lat, lon], {radius: 200}).addTo(map)
-            map.panTo([lat, lon]).zoomIn(10)
+                .bindPopup(`<b>${cep}</b><br>${displayName}`).openPopup(); // Abre o popup automaticamente
+            currentArea = L.circle([lat, lon], { radius: 200, color: 'blue', fillColor: '#30f', fillOpacity: 0.3 }).addTo(map);
 
             // Centralize o mapa no novo marcador
             map.setView([lat, lon], 15); // ajusta o zoom
+
+            // Busca e exibe as informações de precipitação
+            let precipitationInfo = '';
+            try {
+                const dataPrep = await informacoesPrecipitacao(lat, lon);
+                if (dataPrep && dataPrep.daily && dataPrep.daily.precipitation_sum) {
+                    const precipitationSums = dataPrep.daily.precipitation_sum;
+                    let totalPrecipitation = 0;
+
+                    // Somar a precipitação dos próximos 7 dias
+                    for (let i = 0; i < precipitationSums.length; i++) {
+                        totalPrecipitation += precipitationSums[i];
+                    }
+                    precipitationInfo = `<p><strong>Precipitação (7 dias):</strong> ${totalPrecipitation.toFixed(2)} mm</p>`;
+                } else {
+                    precipitationInfo = '<p>Não foi possível obter dados de precipitação.</p>';
+                }
+            } catch (precipError) {
+                console.error('Erro ao buscar precipitação:', precipError);
+                precipitationInfo = `<p class="error">Erro ao obter precipitação: ${precipError.message}</p>`;
+            }
 
             // Mostra as Informações
             infoAside.innerHTML = `
@@ -73,6 +101,7 @@ async function procurarCEP() {
                 <p><strong>Estado:</strong> ${state}</p>
                 <p><strong>Latitude:</strong> ${lat}</p>
                 <p><strong>Longitude:</strong> ${lon}</p>
+                ${precipitationInfo}
             `;
         } else {
             // Se os dados não contêm as informações esperadas ou o CEP não foi encontrado pela API
@@ -81,14 +110,22 @@ async function procurarCEP() {
                 map.removeLayer(currentMarker);
                 currentMarker = null;
             }
+            if (currentArea) {
+                map.removeLayer(currentArea);
+                currentArea = null;
+            }
             map.setView([-23.5505, -46.6333], 10); // Limpa o mapa
         }
     } catch (error) {
         console.error("Erro ao buscar CEP:", error);
-        infoAside.innerHTML = '<h2 class="titulo">Ocorreu um erro ao buscar o CEP. Tente novamente.</h2>';
+        infoAside.innerHTML = `<h2 class="titulo">Ocorreu um erro ao buscar o CEP: ${error.message}. Tente novamente.</h2>`;
         if (currentMarker) {
             map.removeLayer(currentMarker);
             currentMarker = null;
+        }
+        if (currentArea) {
+            map.removeLayer(currentArea);
+            currentArea = null;
         }
         map.setView([-23.5505, -46.6333], 10); // Limpa o mapa
     }
@@ -96,17 +133,29 @@ async function procurarCEP() {
 
 async function converterCEP(cep) {
     const url = `https://brasilapi.com.br/api/cep/v2/${cep}`;
-
     const response = await fetch(url);
+
     if (!response.ok) {
         // A Brasil API retorna status 404 para CEPs não encontrados.
-        // Se a resposta não for OK (status 200), joga um erro.
-        // Isso será capturado pelo bloco catch em procurarCEP.
         if (response.status === 404) {
             throw new Error("CEP não encontrado.");
         }
-        throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
+        throw new Error(`Erro na API Brasil API: ${response.status} ${response.statusText}`);
     }
     const data = await response.json();
-    return data; // CORRIGIDO: Removido '"location"' solto
+    return data;
+}
+
+async function informacoesPrecipitacao(lat, lon) {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=precipitation_sum&timezone=America%2FSao_Paulo&forecast_days=7`;
+    const response = await fetch(url);
+
+    if (!response.ok) { // A condição aqui deve ser para erros (não OK)
+        if (response.status === 404) {
+            throw new Error("Dados de precipitação não encontrados para esta localização.");
+        }
+        throw new Error(`Erro na API Open-Meteo: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
 }
