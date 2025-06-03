@@ -7,10 +7,11 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <script defer src="../js/quiz.js"></script>
+    <script defer src="../js/menu.js"></script>
     <title>GS - Quiz</title>
 </head>
 <body>
-    <header>
+    <header id="desktop-header">
         <a href="../../index.html" class="logo-site"><img src="../assets/Logo.png" alt="Logo"></a>
         <nav>
             <ul>
@@ -20,6 +21,19 @@
             </ul>
         </nav>
         <a href="./contato.html" class="icone-header"><img class="icone-header-img" src="../assets/Icone-ajuda.png" alt="Icone Ajuda">Ajuda</a>
+    </header>
+
+    <header id="mobile-header">
+        <a href="../../index.html" class="logo-site"><img src="../assets/Logo.png" alt="Logo"></a>
+        <nav>
+            <a href="./contato.html" class="icone-header"><img class="icone-header-img" src="../assets/Icone-ajuda.png" alt="Icone Ajuda"></a>    
+            <a id="hamburguer"><img class="icone-header-img" src="../assets/Icone-menu.png" alt="Menu"></a>
+            <ul id="menu-itens" class="">
+                <li><a href="../../index.html" class="icone-header"><img class="icone-header-img" src="../assets/Icone-home.png" alt="Icone Home">Home</a></li>
+                <li><a href="./sobre.html" class="icone-header"><img class="icone-header-img" src="../assets/Icone-sobre.png" alt="Icone Sobre">Sobre</a></li>
+                <li><a href="./quiz.html" class="icone-header"><img class="icone-header-img" src="../assets/Icone-quiz.png" alt="Icone Quiz">Quiz</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main id="pagina-quiz">

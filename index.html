@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"crossorigin=""/>
     <script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"crossorigin=""></script>
     <script defer src="./src/js/mapa.js"></script>
+    <script defer src="./src/js/menu.js"></script>
     
     <link rel="stylesheet" href="./src/css/style.css">
 
@@ -16,7 +17,7 @@
 </head>
 <body>
     
-    <header>
+    <header id="desktop-header">
         <a href="./index.html" class="logo-site"><img src="./src/assets/Logo.png" alt="Logo"></a>
         <nav>
             <ul>
@@ -26,6 +27,19 @@
             </ul>
         </nav>
         <a href="./src/pages/contato.html" class="icone-header"><img class="icone-header-img" src="./src/assets/Icone-ajuda.png" alt="Icone Ajuda">Ajuda</a>
+    </header>
+
+    <header id="mobile-header">
+        <a href="./index.html" class="logo-site"><img src="./src/assets/Logo.png" alt="Logo"></a>
+        <nav>
+            <a href="./src/pages/contato.html" class="icone-header"><img class="icone-header-img" src="./src/assets/Icone-ajuda.png" alt="Icone Ajuda"></a>    
+            <a id="hamburguer"><img class="icone-header-img" src="./src/assets/Icone-menu.png" alt="Menu"></a>
+            <ul id="menu-itens" class="">
+                <li><a href="./index.html" class="icone-header"><img class="icone-header-img" src="./src/assets/Icone-home.png" alt="Icone Home">Home</a></li>
+                <li><a href="./src/pages/sobre.html" class="icone-header"><img class="icone-header-img" src="./src/assets/Icone-sobre.png" alt="Icone Sobre">Sobre</a></li>
+                <li><a href="./src/pages/quiz.html" class="icone-header"><img class="icone-header-img" src="./src/assets/Icone-quiz.png" alt="Icone Quiz">Quiz</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main id="pagina-home">

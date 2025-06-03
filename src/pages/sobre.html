@@ -7,10 +7,12 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <script defer src="../js/script.js"></script>
+    <script defer src="../js/menu.js"></script>
+
     <title>GS - Sobre</title>
 </head>
 <body>
-    <header>
+    <header id="desktop-header">
         <a href="../../index.html" class="logo-site"><img src="../assets/Logo.png" alt="Logo"></a>
         <nav>
             <ul>
@@ -20,6 +22,19 @@
             </ul>
         </nav>
         <a href="./contato.html" class="icone-header"><img class="icone-header-img" src="../assets/Icone-ajuda.png" alt="Icone Ajuda">Ajuda</a>
+    </header>
+
+    <header id="mobile-header">
+        <a href="../../index.html" class="logo-site"><img src="../assets/Logo.png" alt="Logo"></a>
+        <nav>
+            <a href="./contato.html" class="icone-header"><img class="icone-header-img" src="../assets/Icone-ajuda.png" alt="Icone Ajuda"></a>    
+            <a id="hamburguer"><img class="icone-header-img" src="../assets/Icone-menu.png" alt="Menu"></a>
+            <ul id="menu-itens" class="">
+                <li><a href="../../index.html" class="icone-header"><img class="icone-header-img" src="../assets/Icone-home.png" alt="Icone Home">Home</a></li>
+                <li><a href="./sobre.html" class="icone-header"><img class="icone-header-img" src="../assets/Icone-sobre.png" alt="Icone Sobre">Sobre</a></li>
+                <li><a href="./quiz.html" class="icone-header"><img class="icone-header-img" src="../assets/Icone-quiz.png" alt="Icone Quiz">Quiz</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -73,30 +88,6 @@
                     </div>
                 </section>
             </section>
-            <!-- <div class="cards">
-                <div class="card hidden-left" id="card1">
-                    <h2 class="titulo" id="card1Titulo">População em áreas de risco </h2>
-                    <ul class="card-info hidden" id="card1Info">
-                        <li class="paragrafo">Ser alertadas com antecedência.</li>
-                        <li class="paragrafo">Evitar danos a bens materiais.</li>
-                        <li class="paragrafo">Planejar rotas e decisões com segurança.</li>
-                    </ul>
-                </div>
-                <div class="card hidden-left" id="card2">
-                    <h2 class="titulo" id="card2Titulo">Órgãos públicos e Defesa Civil</h2>
-                    <ul class="card-info hidden" id="card2Info">
-                        <li class="paragrafo">Identificar áreas críticas rapidamente.</li>
-                        <li class="paragrafo">Apoiar decisões sobre evacuação, mobilização de equipes e recursos.</li>
-                    </ul>
-                </div>
-                <div class="card hidden-left" id="card3">
-                    <h2 class="titulo" id="card3Titulo">Escolas e instituições públicas</h2>
-                    <ul class="card-info hidden" id="card3Info">
-                        <li class="paragrafo">Cancelar ou adiar atividades.</li>
-                        <li class="paragrafo">Garantir a segurança de alunos e funcionários.</li>
-                    </ul>
-                </div>
-            </div> -->
         </section>
     </main>
 

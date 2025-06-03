@@ -30,6 +30,60 @@ header {
     align-items: center;
 }
 
+#mobile-header {
+    display: none;
+}
+
+#mobile-header nav {
+    display: flex;
+    gap: 20px;
+    
+}
+
+#mobile-header nav #hamburguer {
+    z-index: 2000;
+    cursor: pointer;
+}
+
+#mobile-header nav #menu-itens {
+    position: absolute;
+    right: -100%;
+    top: 0;
+    opacity: 0;
+}
+
+#mobile-header.active nav #menu-itens .icone-header {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+#mobile-header.active nav #menu-itens {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background: var(--color-font4);
+    transition: 1s;
+    opacity: 1;
+}
+
+
+#desktop-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: var(--color-font2);
+    align-items: center;
+}
+
 .logo-site img {
     width: 80px;
     height: 80px;
@@ -503,4 +557,14 @@ footer #rodape #rodape-contato .paragrafo, #rodape-redes .paragrafo{
 
 footer #direitos .paragrafo {
     font-size: 1.7rem;
+}
+
+@media (width <= 750px) {
+    #desktop-header {
+        display: none;
+    }
+
+    #mobile-header {
+        display: flex;
+    }
 }
