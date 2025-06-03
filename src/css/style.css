@@ -207,6 +207,12 @@ header nav ul {
     
 }
 
+.secao-card.active .card-container .card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .secao-card .card-container .card-info .paragrafo {
     max-width: 700px;
     text-align: start;
@@ -451,7 +457,23 @@ header nav ul {
     color: var(--color-font1);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 10px;
+}
+
+#informacoes .titulo {
+    margin-bottom: 20px;
+}
+
+#informacoes span {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+#informacoes .paragrafo {
+    font-size: 2.1rem;
+    font-family: var(--texto-font);
 }
 
 #pesquisa-CEP {
@@ -574,5 +596,149 @@ footer #direitos .paragrafo {
 
     #mobile-header {
         display: flex;
+    }
+
+    .secao-card {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .secao-card .card {
+        background: transparent;
+    }
+
+    .secao-card .card .arrow {
+        display: none;
+    }
+
+    .secao-card .card-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+    }
+
+    .secao-card .card-container .card-info {
+        display: none;
+    }
+
+    .secao-card.active .card-container .card-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        margin-left: 40px;
+        width: 400px;
+    }
+
+
+    .secao-card.active .card-titulo {
+        display: none;
+    }
+
+    .secao-card.active .card-container {
+        display: flex;
+    }
+
+    .slide-show {
+        height: 30vh;
+    }
+
+    .titulo {
+        font-size: 1.5rem;
+    }
+
+    .paragrafo {
+        font-size: 1.3rem;
+    }
+
+    .btn {
+        font-size: 1.5rem;
+        width: 300px;
+    }
+
+    #secao-quiz {
+        width: 375px;
+        min-height: 150px;
+        padding: 10px;
+    }
+
+    #form-quiz {
+        line-height: 15px;
+    }
+
+    #form-quiz #count-pergunta {
+        font-size: 1.1rem;
+        margin-left: 5px;
+    }
+
+    #form-quiz #campo-pergunta {
+        font-size: 1.1rem;
+    }
+
+    #form-quiz #mensagem-erro {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    #campo-alternativas {
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .alternativas {
+        margin-top: 0;
+    }
+
+    #alternativa-1, #alternativa-2 {
+        width: 100%;
+    }
+
+    #alternativa-1 .paragrafo, #alternativa-2 .paragrafo {
+        font-size: 1rem;
+        line-height: 15px;
+    }
+
+    #feedback-acerto {
+        font-size: 1.1rem;
+    }
+
+    #curiosidade {
+        font-size: 1.15rem;
+    }
+
+    #pagina-home {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 20px;
+    }
+
+    .secao-mapa {
+        flex-direction: column;
+    }
+
+    .mapa-container {
+        width: 100%;
+    }
+
+    #informacoes {
+        width: 100%;
+        min-height: 100px;
+        height: 100%;
+    }
+
+    
+    #informacoes span {
+        font-size: 1rem;
+        font-weight: 800;
+    }
+
+    #informacoes .paragrafo {
+        font-size: 1.1rem;
+        font-family: var(--texto-font);
     }
 }

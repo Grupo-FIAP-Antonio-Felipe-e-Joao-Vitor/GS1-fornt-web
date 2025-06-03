@@ -20,15 +20,18 @@ const cards = document.querySelectorAll(".card")
 cards.forEach((card) => {
     card.addEventListener("click", () => {
         const secaoCard = card.closest(".secao-card")
-        const texto = secaoCard.querySelector(".card-container .card-info")
-
-        texto.classList.toggle("hidden")
-        console.log(texto)
+        
+        secaoCard.classList.toggle("active")
     })
 })
 
 let count = 0
 
+const imagens = [
+    "../assets/Imagem1-sobre.png",
+    "../assets/Imagem2-sobre.png",
+    "../assets/Imagem3-sobre.png",
+]
 
 function slideShow () {
     

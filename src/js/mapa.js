@@ -54,13 +54,6 @@ async function procurarCEP() {
             const lat = parseFloat(dataCEp.location.coordinates.latitude);
             const lon = parseFloat(dataCEp.location.coordinates.longitude);
 
-            // Extrai as informações do CEP
-            const street = dataCEp.street || 'Não informado';
-            const neighborhood = dataCEp.neighborhood || 'Não informado';
-            const city = dataCEp.city || 'Não informado';
-            const state = dataCEp.state || 'Não informado';
-            const displayName = `${street}, ${neighborhood}, ${city}, ${state}`; // Para o popup
-
             // Remove o marcador e o círculo anteriores caso existam
             if (currentMarker) {
                 map.removeLayer(currentMarker);
@@ -73,7 +66,7 @@ async function procurarCEP() {
 
             // Adiciona o marcador e o círculo
             currentMarker = L.marker([lat, lon]).addTo(map)
-                .bindPopup(`<b>${cep}</b><br>${displayName}`).openPopup(); // Abre o popup automaticamente
+                .bindPopup(`<b>${cep}</b>`).openPopup(); // Abre o popup automaticamente
             currentArea = L.circle([lat, lon], { radius: 200, color: 'blue', fillColor: '#30f', fillOpacity: 0.3 }).addTo(map);
 
             // Centralize o mapa no novo marcador
@@ -91,27 +84,17 @@ async function procurarCEP() {
                     for (let i = 0; i < precipitationSums.length; i++) {
                         totalPrecipitation += precipitationSums[i];
                     }
-                    precipitationInfo = `<p><strong>Precipitação (7 dias):</strong> ${totalPrecipitation.toFixed(2)} mm</p>`;
-                } else {
-                    precipitationInfo = '<p>Não foi possível obter dados de precipitação.</p>';
+                    precipitationInfo = totalPrecipitation.toFixed(2)
                 }
             } catch (precipError) {
                 console.error('Erro ao buscar precipitação:', precipError);
                 precipitationInfo = `<p class="error">Erro ao obter precipitação: ${precipError.message}</p>`;
             }
 
+            
+
             // Mostra as Informações
-            infoAside.innerHTML = `
-                <h2 class="titulo">Informações do CEP: ${cep}</h2>
-                <p><strong>Rua:</strong> ${street}</p>
-                <p><strong>Bairro:</strong> ${neighborhood}</p>
-                <p><strong>Cidade:</strong> ${city}</p>
-                <p><strong>Estado:</strong> ${state}</p>
-                <p><strong>Latitude:</strong> ${lat}</p>
-                <p><strong>Longitude:</strong> ${lon}</p>
-                <p><strong>Nível da água:</strong> ${nivelAgua}</p>
-                ${precipitationInfo}
-            `;
+            mostrarInfo(precipitationInfo, nivelAgua)            
         } else {
             // Se os dados não contêm as informações esperadas ou o CEP não foi encontrado pela API
             infoAside.innerHTML = '<h2 class="titulo">CEP não encontrado ou sem informações de localização.</h2>';
@@ -168,3 +151,20 @@ async function informacoesPrecipitacao(lat, lon) {
     const data = await response.json();
     return data;
 }
+
+function mostrarInfo (precipitationInfo, nivelAgua) {
+    let riscoEnchente = null
+    if (precipitationInfo < 80) {
+        riscoEnchente = "Baixo"
+    } else if (precipitationInfo >= 80 && precipitationInfo <= 100) {
+        riscoEnchente = "Médio"
+    } else {
+        riscoEnchente = "Alto"
+    }
+
+    infoAside.innerHTML =  `<h2 class="titulo">${riscoEnchente} Risco de Enchente</h2>
+                            <ul>
+                            <li class="paragrafo"><span>Precipitação ao longo da semana:</span> ${precipitationInfo}mm</li>
+                            <li class="paragrafo"><span>Nível de água:</span> ${nivelAgua}</li>
+                            </ul>`
+}   
