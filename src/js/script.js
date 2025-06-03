@@ -20,8 +20,15 @@ const cards = document.querySelectorAll(".card")
 cards.forEach((card) => {
     card.addEventListener("click", () => {
         const secaoCard = card.closest(".secao-card")
-        
+        const arrow = card.querySelector(".arrow")
+
         secaoCard.classList.toggle("active")
+        if (secaoCard.classList.contains("active")) {
+            arrow.innerHTML = "&larr;"
+        } else {
+            arrow.innerHTML = "&rarr;"
+        }
+
     })
 })
 
