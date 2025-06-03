@@ -659,8 +659,12 @@ footer #direitos .paragrafo {
         width: 300px;
     }
 
+    #pagina-quiz {
+        padding: 5px;
+    }
+
     #secao-quiz {
-        width: 375px;
+        width: 100%;
         min-height: 150px;
         padding: 10px;
     }
@@ -740,5 +744,23 @@ footer #direitos .paragrafo {
     #informacoes .paragrafo {
         font-size: 1.1rem;
         font-family: var(--texto-font);
+    }
+
+    #secao-ajuda {
+        padding: 10px;
+    }
+
+    #form-ajuda {
+        width: 100%;
+    }
+
+    footer #rodape {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    footer #direitos .paragrafo {
+        text-align: center;
     }
 }
